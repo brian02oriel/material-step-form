@@ -1,5 +1,10 @@
 
 import React, { Component } from 'react'
+
+import Stepper from '@material-ui/core/Stepper';
+import Step from '@material-ui/core/Step';
+import StepLabel from '@material-ui/core/StepLabel';
+
 import FormUserDetails from './FormUserDetails';
 import FormPersonalDetails from './FormPersonalDetails';
 import Confirm from './Confirm'
@@ -37,10 +42,16 @@ export class UserForm extends Component {
         this.setState({[input]: e.target.value});
     }
 
+    getSteps() {
+        return ['FormUserDetails', 'FormPersonalDetails', 'Confirm'];
+      }
+
     render() {
      const {step} = this.state;
-     const {firstName, lastName, email, occupation, bio} = this.state;
-     const values = {firstName, lastName, email, occupation, bio};
+     const {firstName, lastName, email, occupation, bio, city} = this.state;
+     const values = {firstName, lastName, email, occupation, bio, city};
+     const activeStep = this.state.step;
+     const steps = this.getSteps
 
      switch(step) {
         case 1:
@@ -76,8 +87,20 @@ export class UserForm extends Component {
      }
         return (
           <div>
-        
-          </div>
+              <Stepper activeStep={activeStep}>
+                 {steps.map((label, index) => {
+                  const props = {};
+                    const labelProps = {};
+                    
+                return (
+                  <Step key={label} {...props}>
+                    <StepLabel {...labelProps}>{label}</StepLabel>
+                  </Step>
+                );
+              })}
+            </Stepper>
+             
+         </div>
     )
   }
 }

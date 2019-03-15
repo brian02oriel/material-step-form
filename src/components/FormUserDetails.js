@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
-import AppBar from 'material-ui/AppBar';
-import TextField from 'material-ui/TextField';
-import RaisedButton from 'material-ui/RaisedButton'
+import Grid from '@material-ui/core/Grid';
+import AppBar from '@material-ui/core/AppBar';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography'
 
 export default class FormUserDetails extends Component {
     continue = e =>{ //e = event
@@ -12,38 +14,45 @@ export default class FormUserDetails extends Component {
   render() {
       const { values, handleChange } = this.props;
     return (
-      <MuiThemeProvider>
+      <Grid container spacing={24} 
+      alignContent = 'center'
+      alignItems = 'center'
+      justify = 'center'
+     > 
         <React.Fragment>
-            <AppBar title = "Enter User Details" />
-            <TextField hinText = "Enter your first name"
-            floatingLabelText = "First Name"
-            onChange = {handleChange('firstName')}
-            defaultValue = {values.firstName} />
+            <Grid container item xs={12} spacing={24}
+             alignContent = 'space-around'
+             alignItems = 'center'
+             justify = 'flex-end'
+             direction='column'
+             style = {styles.gridStyle}>
 
-            <br/>
+                <TextField
+                label = "First Name"
+                onChange = {handleChange('firstName')}
+                defaultValue = {values.firstName}
+                margin = "dense" />
 
-            <TextField hinText = "Enter your last name"
-            floatingLabelText = "Last Name"
-            onChange = {handleChange('lastName')}
-            defaultValue = {values.lastName} />
-            
-            <br/>
-            
-            <TextField hinText = "Enter your email"
-            floatingLabelText = "Email"
-            onChange = {handleChange('email')}
-            defaultValue = {values.email} />
+                <TextField 
+                label = "Last Name"
+                onChange = {handleChange('lastName')}
+                defaultValue = {values.lastName} 
+                margin = "dense"/>
 
-            <br/>
+                <TextField 
+                label = "Email"
+                onChange = {handleChange('email')}
+                defaultValue = {values.email} 
+                margin = "dense"/>
+            </Grid>  
 
-            <RaisedButton 
-            label = "Continue"
-            primary = "true"
-            style = {styles.button}
-            onClick = {this.continue}/>
-
+            <Grid item xs={6}> 
+                <Button variant="contained" color="primary" style = {styles.button} onClick = {this.continue}>
+                    Continue
+                </Button>
+            </Grid>
         </React.Fragment>
-      </MuiThemeProvider>
+      </Grid>
     )
   }
 }
@@ -51,5 +60,11 @@ export default class FormUserDetails extends Component {
 const styles = {
     button: {
         margin: 15
+    },
+
+    gridStyle: {
+        margin: 15
     }
+
+
 }

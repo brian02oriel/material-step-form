@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
-import AppBar from 'material-ui/AppBar';
-import TextField from 'material-ui/TextField';
-import RaisedButton from 'material-ui/RaisedButton'
+import Grid from '@material-ui/core/Grid';
+import AppBar from '@material-ui/core/AppBar';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography'
 
 export default class FormPersonalDetails extends Component {
     continue = e =>{ //e = event
@@ -18,51 +20,67 @@ export default class FormPersonalDetails extends Component {
   render() {
     const { values, handleChange } = this.props;
     return (
-      <MuiThemeProvider>
+        <Grid container spacing={24} 
+        alignContent = 'center'
+        alignItems = 'center'
+        justify = 'center'
+       > 
         <React.Fragment>
-            <AppBar title = "Enter Personal Details" />
-            <TextField hinText = "Enter your occupation"
-            floatingLabelText = "Occupation"
-            onChange = {handleChange('occupation')}
-            defaultValue = {values.occupation} />
+            <Grid container item xs={12} spacing={24}
+             alignContent = 'space-around'
+             alignItems = 'center'
+             justify = 'flex-end'
+             direction='column'
+             style = {styles.gridStyle}>
+             
+                     <TextField
+                 label= "Occupation"
+                 onChange = {handleChange('occupation')}
+                 defaultValue = {values.occupation} 
+                 margin="dense"/>
 
-            <br/>
+         
 
-            <TextField hinText = "Enter your city"
-            floatingLabelText = "City"
-            onChange = {handleChange('city')}
-            defaultValue = {values.city} />
+                 <TextField 
+                 label = "City"
+                 onChange = {handleChange('city')}
+                 defaultValue = {values.city} 
+                 margin = "dense"/>
             
-            <br/>
             
-            <TextField hinText = "Enter your bio"
-            floatingLabelText = "Bio"
-            onChange = {handleChange('bio')}
-            defaultValue = {values.bio} />
+            
+                 <TextField 
+                 label = "Bio"
+                 onChange = {handleChange('bio')}
+                 defaultValue = {values.bio} 
+                 margin = "dense"/>
+             
+             </Grid>
 
-            <br/>
+            <Grid item xs={6}> 
+                <Button variant="contained" color="primary" style = {styles.button} onClick = {this.back}>
+                    Back
+                </Button>
+            </Grid>
 
-            <RaisedButton 
-            label = "Back"
-            primary = "false"
-            style = {styles.button}
-            onClick = {this.back}/>
-
-            <RaisedButton 
-            label = "Continue"
-            primary = "true"
-            style = {styles.button}
-            onClick = {this.continue}/>
+            <Grid item xs={6}> 
+                <Button variant="contained" color="primary" style = {styles.button} onClick = {this.continue}>
+                    Continue
+                </Button>
+            </Grid>
 
 
         </React.Fragment>
-      </MuiThemeProvider>
+      </Grid>
     )
   }
 }
 
 const styles = {
     button: {
+        margin: 15
+    },
+    gridStyle: {
         margin: 15
     }
 }

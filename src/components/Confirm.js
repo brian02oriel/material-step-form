@@ -1,8 +1,12 @@
 import React, { Component } from 'react'
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
-import AppBar from 'material-ui/AppBar';
-import { List, ListItem} from 'material-ui/List';
-import RaisedButton from 'material-ui/RaisedButton'
+import Grid from '@material-ui/core/Grid';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography'
+import AppBar from '@material-ui/core/AppBar';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListSubheader from '@material-ui/core/ListSubheader';
+import Button from '@material-ui/core/Button';
 
 
 export default class Confirm extends Component {
@@ -19,53 +23,84 @@ export default class Confirm extends Component {
   render() {
       const { values:{ firstName, lastName, email, occupation, city, bio} } = this.props;
     return (
-      <MuiThemeProvider>
+        <Grid container spacing={24} 
+        alignContent = 'center'
+        alignItems = 'center'
+        justify = 'center'
+       > 
+          
         <React.Fragment>
-            <AppBar title = "Confirm your info" />
-                <List>
-                    <ListItem 
-                    primaryText = "First Name"
-                    secondaryText = {firstName}
-                    />
-                    <ListItem 
-                    primaryText = "Last Name"
-                    secondaryText = {lastName}
-                    />
-                    <ListItem 
-                    primaryText = "Email"
-                    secondaryText = {email}
-                    />
-                    <ListItem 
-                    primaryText = "Occupation"
-                    secondaryText = {occupation}
-                    />
-                    <ListItem 
-                    primaryText = "Bio"
-                    secondaryText = {bio}
-                    />
+        <Grid container item xs={12} spacing={24}
+             alignContent = 'space-around'
+             alignItems = 'center'
+             justify = 'flex-end'
+             direction='column'
+             style = {styles.gridStyle}>
+              <List>  
+                    <ListItem>
+                        First Name
+                        <ListSubheader>
+                            {firstName}
+                        </ListSubheader>
+                    </ListItem>
+                    <ListItem>
+                        Last Name
+                        <ListSubheader>
+                            {lastName}
+                        </ListSubheader>
+                    </ListItem>
+                    <ListItem>
+                        Email
+                        <ListSubheader>
+                            {email}
+                        </ListSubheader>
+                    </ListItem>
+                    <ListItem>
+                       Occupation
+                        <ListSubheader>
+                            {occupation}
+                        </ListSubheader>
+                    </ListItem>
+                    <ListItem>
+                      City
+                        <ListSubheader>
+                            {city}
+                        </ListSubheader>
+                    </ListItem>
+                    <ListItem>
+                        Bio
+                        <ListSubheader>
+                            {bio}
+                        </ListSubheader>
+                    </ListItem>
+                   
                 </List>
-            <br/>
+             </Grid>
+               
 
-            <RaisedButton 
-            label = "Back"
-            primary = "false"
-            style = {styles.button}
-            onClick = {this.back}/>
+            <Grid item xs={6}> 
+                <Button variant="contained" color="primary" style = {styles.button} onClick = {this.back}>
+                    Back
+                </Button>
+            </Grid>
 
-            <RaisedButton 
-            label = "Confirm & Continue"
-            primary = "true"
-            style = {styles.button}
-            onClick = {this.continue}/>
+            <Grid item xs={6}> 
+                <Button variant="contained" color="primary" style = {styles.button} onClick = {this.continue}>
+                    Confirm & Continue
+                </Button>
+            </Grid>
 
         </React.Fragment>
-      </MuiThemeProvider>
+        </Grid>
     )
   }
 }
 
 const styles = {
     button: {
+        margin: 15
+    },
+    gridStyle: {
         margin: 15
     }
 }
